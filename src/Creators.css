@@ -1,0 +1,35 @@
+.c-head{max-width:1200px}
+.org{padding:40px 8% 100px;max-width:1000px;margin:0 auto;text-align:center}
+.org h2{font-size:2rem;margin-bottom:36px}
+.tree{display:flex;flex-direction:column;align-items:center}
+.stem{width:2px;height:34px;background:var(--gold)}
+.node{display:flex;justify-content:center}
+
+/* 7 researchers laid out 3 / 3 / 1, joined by a bracket on top */
+.researchers{position:relative;display:grid;grid-template-columns:repeat(3,200px);justify-content:center;gap:34px 40px;padding-top:34px}
+.researchers::before{content:"";position:absolute;top:0;left:calc(100px);right:calc(100px);border-top:2px solid var(--gold)}
+.researchers .node{position:relative}
+.researchers .node::before{content:"";position:absolute;top:-34px;left:50%;height:34px;border-left:2px solid var(--gold)}
+.researchers .node:nth-child(n+4)::before{border-left-style:dashed;opacity:.6}
+.researchers .node:last-child{grid-column:2}
+
+.person{margin:0;width:200px;outline:none}
+.photo{position:relative;width:160px;height:160px;margin:0 auto;border-radius:50%;overflow:hidden;border:3px solid var(--gold);background:var(--forest);box-shadow:0 6px 18px rgba(31,58,41,.18)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.initials{display:grid;place-items:center;height:100%;color:var(--gold-light);font:700 2.4rem var(--serif);letter-spacing:2px}
+.photo figcaption{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;text-align:center;
+  background:rgba(24,59,40,.86);color:#f5f1e8;opacity:0;transition:opacity .25s}
+.photo figcaption strong{font-size:.95rem;line-height:1.25}
+.photo figcaption span{margin-top:6px;font:700 .68rem var(--sans);letter-spacing:2px;color:var(--gold-light)}
+.person:hover figcaption,.person:focus figcaption,.person:focus-within figcaption{opacity:1}
+.label{display:none;margin-top:10px}
+.label strong{display:block;color:var(--forest)}
+.label span{font:.8rem var(--sans);color:var(--muted)}
+@media(hover:none){.photo figcaption{display:none}.label{display:block}}
+
+@media(max-width:720px){
+  .researchers{grid-template-columns:repeat(2,minmax(0,160px));gap:30px 20px}
+  .researchers::before{left:80px;right:80px}
+  .researchers .node:last-child{grid-column:auto}
+  .person{width:160px}.photo{width:130px;height:130px}
+}

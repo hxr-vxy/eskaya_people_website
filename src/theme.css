@@ -1,0 +1,46 @@
+/* Shared theme: loaded last so it refines the per-page CSS without replacing it */
+:root{
+  --forest:#254d35; --forest-dark:#183b28; --gold:#a77d32; --gold-light:#e4c67e;
+  --paper:#f5f1e8; --paper-deep:#eae3d3; --ink:#26382d; --muted:#536158; --line:#d8d2c4;
+  --serif:Georgia,"Times New Roman",serif; --sans:"Segoe UI",Arial,Helvetica,sans-serif;
+  /* subtle woven-diamond texture, drawn as inline SVG */
+  --weave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M14 2 26 14 14 26 2 14Z' fill='none' stroke='%23a77d32' stroke-opacity='.16'/%3E%3C/svg%3E");
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.6}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--forest)}
+p,small{font-family:var(--sans);color:var(--muted)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* Existing pages: hard <br/> line breaks fight responsive layout on small screens */
+@media(max-width:900px){p br,small br,h1 br{display:none}
+  .firstInfo,.secondInfo,.cards,.first-two,.second-two,.first-three-writing,.second-three-writing,.text-with-image{flex-direction:column}
+  .milestone,.documentation{flex-basis:auto}
+  .fourth-section .first-three,.fourth-section .last-two,.third-section .summary,.footer-container{grid-template-columns:1fr}
+  .header-image{width:100%}}
+@media(max-width:600px){.navbar{justify-content:center;flex-wrap:wrap;gap:14px 20px;padding:14px 5%}}
+
+/* Home: fix washed-out text and give the heading band some texture */
+.fourth-section h1{text-shadow:0 2px 12px rgba(0,0,0,.45)}
+.fourth-section .first-three>div:hover,.fourth-section .last-two>div:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.fourth-section a{color:var(--forest);font-weight:bold;text-decoration:none;font-size:1.15rem;margin-bottom:8px}
+.fourth-section a:hover{color:var(--gold)}
+.third-section{background:var(--weave),linear-gradient(var(--forest),var(--forest-dark))}
+.third-section .summary p{color:#c9d3cb}
+.summary hr{border:0;border-top:1px solid var(--gold);width:48px;margin:0 auto 16px}
+.intro-figure{margin:0 0 35px;max-width:850px}
+.intro-figure img{width:100%;height:380px;object-fit:cover;border-radius:6px;box-shadow:0 14px 34px rgba(31,58,41,.18)}
+.intro-figure figcaption,.fig-caption{font-family:var(--sans);font-size:.8rem;color:var(--muted);margin-top:8px}
+
+/* Community / History / Language: readable measure, consistent cards and accents */
+.header-text>p:first-child,.titleArea>p:first-child{color:var(--gold)}
+.writing>small,.first-three-writing h6,.second-three-writing h6{color:var(--gold)}
+.eskayaDefinition p,.geographic>p,.demographic>p,.language p,.writing>p{max-width:820px}
+.note{background:#f7f3eb;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:4px}
+.geo-figure,.arts-figures{display:grid;gap:16px;margin:30px 0}
+.geo-figure{grid-template-columns:1fr;max-width:820px}
+.geo-figure img{width:100%;height:340px;object-fit:cover;border-radius:6px}
+.arts-figures{grid-template-columns:repeat(2,1fr);max-width:640px}
+.arts-figures img{width:100%;height:320px;object-fit:cover;object-position:top;border-radius:6px}
+@media(max-width:600px){.arts-figures{grid-template-columns:1fr}.intro-figure img{height:240px}}
